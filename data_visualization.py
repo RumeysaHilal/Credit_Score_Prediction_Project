@@ -118,3 +118,31 @@ def boxplot_comparison(data, x, y, figsize=(12, 8), palette=None, title=None):
     sns.boxplot(data=data, x=x, y=y, palette=custom_palette)
     plt.title(title if title else f'Boxplot of {y} vs {x}')
     plt.show()
+
+def plot_boxplot(df, feature, target_column, figsize=(12, 6)):
+    """
+    Verilen veri çerçevesinde belirli bir özellikle hedef sütunu arasındaki ilişkiyi gösteren bir boxplot çizer.
+
+    Parameters:
+    - df (pd.DataFrame): Veri çerçevesi.
+    - feature (str): Boxplot'ta gösterilecek özellik adı.
+    - target_column (str): Hedef sütun adı.
+    - figsize (tuple): Boxplot boyutu.
+
+    Returns:
+    - None
+    """
+    # Veriyi hedef sütuna göre sırala
+    sorted_df = df.sort_values(by=target_column)
+
+    # Boxplot çizimi
+    plt.figure(figsize=figsize)
+    sns.boxplot(x=target_column, y=feature, data=sorted_df)
+
+    # Grafik düzenlemeleri
+    plt.title(f'Boxplot of {feature} by {target_column}')
+    plt.xlabel(target_column)
+    plt.ylabel(feature)
+
+    # Göster
+    plt.show()

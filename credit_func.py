@@ -3,7 +3,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
 import re
 
 def create_dataFrame(credit_data,csv=False):
@@ -16,9 +15,13 @@ def create_dataFrame(credit_data,csv=False):
     new_cs = pd.DataFrame()
 
     new_cs["Customer_ID"]=credit_data["Customer_ID"]
-    new_cs["Annual_Icome"] = credit_data["Annual_Income"]
+    new_cs["Annual_Income"] = credit_data["Annual_Income"]
     new_cs["Monthly_Inhand_Salary"] = credit_data["Monthly_Inhand_Salary"]
     new_cs["Amount_invested_monthly"] = credit_data["Amount_invested_monthly"]
+    new_cs["Interest_Rate"] = credit_data["Interest_Rate"]
+    new_cs["Outstanding_Debt"] = credit_data["Outstanding_Debt"]
+    new_cs["Num_of_Loan"] = credit_data["Num_of_Loan"]
+
     
     new_cs['Total_Payment_to_Credit_Limit_Ratio'] = credit_data['Total_EMI_per_month'] / credit_data['Changed_Credit_Limit']
 
@@ -31,8 +34,6 @@ def create_dataFrame(credit_data,csv=False):
     new_cs['Daily_Payment_Delay'] = credit_data['Delay_from_due_date'] / 30 
 
     new_cs['High_Credit_Use'] = (credit_data['Credit_Utilization_Ratio'] >= 0.7).astype(int)
-
-    new_cs['Loan_Type_Count'] = credit_data['Type_of_Loan'].apply(lambda x: len([loan.strip() for loan in re.split(',|and', x)]))
 
     label_encoder = LabelEncoder()
     new_cs['Credit_Score'] = label_encoder.fit_transform(credit_data['Credit_Score'])
