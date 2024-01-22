@@ -12,15 +12,12 @@ def train_knn_model(X_train, X_test, y_train, y_test, n_neighbors=4):
     Verilen girdi verileriyle KNN modeli oluşturur ve eğitir.
     
     Parameters:
-    - X (pd.DataFrame): Bağımsız değişkenlerin bulunduğu veri çerçevesi.
-    - y (pd.Series): Bağımlı değişkenin bulunduğu seri.
+    - X_train, X_test, y_train, y_test: Train ve test veri setleri.
     - n_neighbors (int): KNN modelinde kullanılacak komşu sayısı.
 
     Returns:
     - None
     """
-    # Veriyi train ve test setlere ayır
-    #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
     # KNN modelini oluştur ve eğit
     knn_model = KNeighborsClassifier(n_neighbors=n_neighbors)
@@ -31,7 +28,7 @@ def train_knn_model(X_train, X_test, y_train, y_test, n_neighbors=4):
 
     # Doğruluk (accuracy) hesapla
     accuracy = accuracy_score(y_test, y_pred)
-    print(f"KNN Accuracy: {accuracy}")
+    print(f"KNN Accuracy: {accuracy:.3f}")
 
 
 def train_logistic_regression_model(X_train, X_test, y_train, y_test, C=1.0,solver='lbfgs',multi_class='multinomial'):
@@ -54,14 +51,14 @@ def train_logistic_regression_model(X_train, X_test, y_train, y_test, C=1.0,solv
 
     # Doğruluk (accuracy) hesapla
     accuracy = accuracy_score(y_test, y_pred)
-    print(f"Logistic Regression Accuracy: {accuracy}")
+    print(f"Logistic Regression Accuracy: {accuracy:.3f}")
 
     # F1-score hesapla
     f1 = f1_score(y_test, y_pred, average='weighted')
-    print(f"F1-Score: {f1}")
+    print(f"F1-Score: {f1:.3f}")
 
-    jaccard_score(y_test, y_pred, average="weighted")
-    print(f"Jaccard Score: {jaccard_score}")
+    jac_score = jaccard_score(y_test, y_pred, average='micro')
+    print(f"Jaccard Score: {jac_score:.3f}")
 
     # Confusion matrix hesapla
     cm = confusion_matrix(y_test, y_pred)
@@ -94,15 +91,15 @@ def train_decision_tree_model(X_train, X_test, y_train, y_test, max_depth=None, 
 
     # Doğruluk (accuracy) hesapla
     accuracy = accuracy_score(y_test, y_pred)
-    print(f"Decision Tree Accuracy: {accuracy}")
+    print(f"Decision Tree Accuracy: {accuracy:.3f}")
 
     # F1-score hesapla
     f1 = f1_score(y_test, y_pred, average='weighted')
-    print(f"F1-Score: {f1}")
+    print(f"F1-Score: {f1:.3f}")
 
     # Jaccard Score hesapla
     jaccard = jaccard_score(y_test, y_pred, average="weighted")
-    print(f"Jaccard Score: {jaccard}")
+    print(f"Jaccard Score: {jaccard:.3f}")
 
     # Confusion matrix hesapla
     cm = confusion_matrix(y_test, y_pred)
@@ -110,11 +107,6 @@ def train_decision_tree_model(X_train, X_test, y_train, y_test, max_depth=None, 
     print(cm)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=np.unique(y_test))
     disp.plot(cmap='YlGn')
-
-    # Decision Tree görselleştirmesi
-    plt.figure(figsize=(12, 8))
-    plot_tree(dt_model, filled=True, feature_names=X_train.columns, class_names=np.unique(y_test), rounded=True)
-    plt.show()
 
 def train_random_forest_model(X_train, X_test, y_train, y_test, n_estimators=100, max_depth=None, min_samples_split=2, min_samples_leaf=1):
     """
@@ -139,15 +131,15 @@ def train_random_forest_model(X_train, X_test, y_train, y_test, n_estimators=100
 
     # Doğruluk (accuracy) hesapla
     accuracy = accuracy_score(y_test, y_pred)
-    print(f"Random Forest Accuracy: {accuracy}")
+    print(f"Random Forest Accuracy: {accuracy:.3f}")
 
     # F1-score hesapla
     f1 = f1_score(y_test, y_pred, average='weighted')
-    print(f"F1-Score: {f1}")
+    print(f"F1-Score: {f1:.3f}")
 
     # Jaccard Score hesapla
     jaccard = jaccard_score(y_test, y_pred, average="weighted")
-    print(f"Jaccard Score: {jaccard}")
+    print(f"Jaccard Score: {jaccard:.3f}")
 
     # Confusion matrix hesapla
     cm = confusion_matrix(y_test, y_pred)
@@ -175,7 +167,7 @@ def train_naive_bayes(X_train, X_test, y_train, y_test):
 
     # Doğruluk (accuracy) hesapla
     accuracy = accuracy_score(y_test, y_pred)
-    print(f"Naive Bayes Accuracy: {accuracy}")
+    print(f"Naive Bayes Accuracy: {accuracy:.3f}")
 
     # Precision, Recall, F1-Score ve Jaccard Score hesapla
     precision = precision_score(y_test, y_pred, average='weighted')
@@ -185,8 +177,8 @@ def train_naive_bayes(X_train, X_test, y_train, y_test):
 
     print(f"Precision: {precision}")
     print(f"Recall: {recall}")
-    print(f"F1-Score: {f1}")
-    print(f"Jaccard Score: {jaccard}")
+    print(f"F1-Score: {f1:.3f}")
+    print(f"Jaccard Score: {jaccard:.3f}")
 
     # Confusion matrix hesapla ve görselleştir
     cm = confusion_matrix(y_test, y_pred)
