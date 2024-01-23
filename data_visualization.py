@@ -1,16 +1,37 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def correlation_(credit_data, numeric_exclude=None, figsize=(12, 10), annot=True, fmt=".2f", cmap='jet'):
+def correlation_threshold(credit_data, threshold=0.4, numeric_exclude=None, figsize=(12, 10), annot=True, fmt=".2f", cmap='jet'):
+    """
+    Verilen DataFrame'deki sayısal sütunlar arasındaki korelasyon matrisini ve belirli bir eşik değeri üzerindeki
+    veya altındaki korelasyonları gösteren heatmap çizer.
 
+    Parameters:
+    - credit_data (pd.DataFrame): Korelasyon matrisi çizilecek DataFrame.
+    - threshold (float): Gösterilecek korelasyon eşik değeri.
+    - numeric_exclude (list): Hariç tutulacak sütunlar.
+    - figsize (tuple): Heatmap boyutu.
+    - annot (bool): Heatmap üzerine değerleri ekleme.
+    - fmt (str): Annot parametresi True olduğunda değerlerin formatı.
+    - cmap (str): Heatmap renk paleti.
+
+    Returns:
+    - None
+    """
     numeric_columns = credit_data.select_dtypes(include='number')
+    
+    # numeric_exclude belirtilmişse, bu sütunları çıkar
     if numeric_exclude:
         numeric_columns = numeric_columns.drop(numeric_exclude, axis=1)
     
     correlation_matrix = numeric_columns.corr()
+    
+    # Korelasyon matrisini belirli bir eşik değeri üzerindeki veya altındaki değerlere filtrele
+    filtered_correlation = correlation_matrix[(correlation_matrix > threshold) | (correlation_matrix < -threshold)]
+    
     plt.figure(figsize=figsize)
-    sns.heatmap(correlation_matrix, annot=annot, fmt=fmt, cmap=cmap)
-    plt.title('Correlation Heatmap')
+    sns.heatmap(filtered_correlation, annot=annot, fmt=fmt, cmap=cmap)
+    plt.title(f'Correlation Heatmap (Threshold={threshold})')
     plt.show()
 
 
@@ -62,7 +83,7 @@ def plot_percentage_distribution(credit_data, column, figsize=(10, 6), palette='
 
     # Bar plot çizimi
     plt.figure(figsize=figsize)
-    sns.barplot(x=percentage_distribution.index, y=percentage_distribution.values, palette=palette)
+    plt.pie(percentage_distribution, labels=percentage_distribution.index, autopct='%1.1f%%', startangle=90, colors=sns.color_palette(palette))
     plt.title(f'Percentage Distribution of {column}')
     plt.xlabel(column)
     plt.ylabel('Percentage (%)')

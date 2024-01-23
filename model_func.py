@@ -30,6 +30,18 @@ def train_knn_model(X_train, X_test, y_train, y_test, n_neighbors=4):
     accuracy = accuracy_score(y_test, y_pred)
     print(f"KNN Accuracy: {accuracy:.3f}")
 
+    # Hassasiyet (precision) hesapla
+    precision = precision_score(y_test, y_pred, average="weighted")
+    print(f"KNN Precision: {precision:.3f}")
+
+    # Duyarlılık (recall) hesapla
+    recall = recall_score(y_test, y_pred, average="micro")
+    print(f"KNN Recall: {recall:.3f}")
+
+    # F1 Skoru hesapla
+    f1 = f1_score(y_test, y_pred,average="macro")
+    print(f"KNN F1 Score: {f1:.3f}")
+
 
 def train_logistic_regression_model(X_train, X_test, y_train, y_test, C=1.0,solver='lbfgs',multi_class='multinomial'):
     """

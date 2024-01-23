@@ -65,6 +65,7 @@ data_visualization.plot_percentage_distribution(credit_data, "Interest_Rate")
 ```
 ![distribution_of_paymentB](https://github.com/RumeysaHilal/Credit_Score_Prediction_Project/assets/66912242/a1b01076-7537-4140-b231-885c81842edd)
 
+
 Yeni belirlenen özellikler aylık ödenmesi gereken taksit miktarının ne kadar ödendiği, kart başına düşen borç miktarı, kredi kartı kullanım sıklığı, günlük gecikme oranı, yüksek kredi kullanımı özellikleri oluşturuldu. Heatmap üzerinden özellikler seçilerek işlenmeden direkt olarak yeni veri setine eklendi. 
 
 Hedef sınıf değerlerinin dengesiz olduğunu belirlendi ve bu dengesizliği gidermek için SMOTE(Synthetic Minority Over-sampling Technique) işlemi uygulandı. Azınlık sınıfındaki veri sayısını artırmak için sentetik örnekler oluşturmak için kullanılır. Aşağıda işlem uygulanmadan önceki verilerin durumu ve işlem uygulandıktan sonraki durumun pie grafiğindeki halleri verilmiştir.
@@ -73,10 +74,6 @@ Hedef sınıf değerlerinin dengesiz olduğunu belirlendi ve bu dengesizliği gi
 
 Modelleri kurgulayarak denemeler yaparak yüksek accuracy değerine sahip modeli ana model olma seçme yolu izlendi. Birden çok parametre ile denenebilir modellere farklı yaklaşımlar ile hangi parametrenin nasıl uygun olacağına karar verildi. Örnek olarak aşağıda KNN algoritmasına cross-validation ve test accuracy değerlerinin k değerlerine göre değişimlerini gösteren grafik verilmiştir. Ana modelde k değeri 4 olarak seçildi, en yüksek oran 2 değerinde olmasına rağmen. Bunun sebebi düşük değerlerdeki k değerleri overfit durumuna yakın olabilme ihtimalidir.
 
-<<<<<<< HEAD
-![KNN Comparasion](resimler/accuracy-comparison.png)
+![accuracy-comparison](https://github.com/RumeysaHilal/Credit_Score_Prediction_Project/assets/66912242/ab7dce39-5d6b-48cc-9f0c-e9c64d3e388f)
 
 Çalışma boyunca veri daha iyi şekilde anlaşılmaya ve en uygun model seçilmeye çalışılmıştır. En yüksek doğruluk knn modelinde olduğu için ana model olarak daha sonrasında knn algoritması kullanılabilir. Projenin devamında müşteri etkileşimine eklenebilir şekilde FestAPI benzeri hazır araçlarla sunulabilir. Meslek grupları da içerisinde bulunduğu için meslek grupları üzerinden naaliz yapılır meslek gruplarındaki kişilerin alışkanlıkları hakkında yorumlar yapılabilir. Bu yaş grubu için de kullanılabilir bir değerlendirme aracı olabilir. 
-=======
-![accuracy-comparison](https://github.com/RumeysaHilal/Credit_Score_Prediction_Project/assets/66912242/ab7dce39-5d6b-48cc-9f0c-e9c64d3e388f)
->>>>>>> 9e58a165d4a779d5639536e1d1dfe3bb9f043b6c

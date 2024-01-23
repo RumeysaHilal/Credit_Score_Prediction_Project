@@ -43,7 +43,4 @@ def create_dataFrame(credit_data,csv=False):
 
     return new_cs
 
-url = "credit-score.csv"
-credit_data = pd.read_csv(url)
-new_= create_dataFrame(credit_data, csv=True)
 
