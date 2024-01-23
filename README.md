@@ -61,9 +61,9 @@ Aşağıdaki örnekte dağılım yüzdesinin plot haline getirilmesinin fonksiyo
 ```python
 import data_visualization
 
-data_visualization.plot_percentage_distribution(credit_data, "Interest_Rate")
+data_visualization.plot_percentage_distribution(credit_data, "Num_of_Loan")
 ```
-![distribution_of_paymentB](https://github.com/RumeysaHilal/Credit_Score_Prediction_Project/assets/66912242/a1b01076-7537-4140-b231-885c81842edd)
+![distribution_of_paymentB](https://github.com/RumeysaHilal/Credit_Score_Prediction_Project/assets/66912242/21c515c0-6b8c-467d-b601-4b2ba8c5d99d)
 
 
 Yeni belirlenen özellikler aylık ödenmesi gereken taksit miktarının ne kadar ödendiği, kart başına düşen borç miktarı, kredi kartı kullanım sıklığı, günlük gecikme oranı, yüksek kredi kullanımı özellikleri oluşturuldu. Heatmap üzerinden özellikler seçilerek işlenmeden direkt olarak yeni veri setine eklendi. 
@@ -77,3 +77,4 @@ Modelleri kurgulayarak denemeler yaparak yüksek accuracy değerine sahip modeli
 ![accuracy-comparison](https://github.com/RumeysaHilal/Credit_Score_Prediction_Project/assets/66912242/ab7dce39-5d6b-48cc-9f0c-e9c64d3e388f)
 
 Çalışma boyunca veri daha iyi şekilde anlaşılmaya ve en uygun model seçilmeye çalışılmıştır. En yüksek doğruluk knn modelinde olduğu için ana model olarak daha sonrasında knn algoritması kullanılabilir. Projenin devamında müşteri etkileşimine eklenebilir şekilde FestAPI benzeri hazır araçlarla sunulabilir. Meslek grupları da içerisinde bulunduğu için meslek grupları üzerinden naaliz yapılır meslek gruplarındaki kişilerin alışkanlıkları hakkında yorumlar yapılabilir. Bu yaş grubu için de kullanılabilir bir değerlendirme aracı olabilir. 
+
